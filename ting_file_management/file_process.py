@@ -26,11 +26,14 @@ def remove(instance: Queue):
     else:
         removed_file = instance.dequeue()
         return print(
-            f"""Arquivo {removed_file['nome_do_arquivo']}
-              removido com sucesso""",
+            f"Arquivo {removed_file['nome_do_arquivo']} removido com sucesso",
             file=sys.stdout,
         )
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    try:
+        file = instance.search(position)
+        print(file)
+    except IndexError:
+        print("Posição inválida", file=sys.stderr)
